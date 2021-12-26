@@ -56,10 +56,23 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: EdgeInsets.all(8.0),
               child: TextField(
-                inputFormatters: [Realmask()],
+                inputFormatters: [Currencymask()],
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Real',
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: TextField(
+                inputFormatters: [
+                  Currencymask(
+                      symbol: r'$ ', symbolSeparator: ',', decimal: '.')
+                ],
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'USD',
                 ),
               ),
             )
