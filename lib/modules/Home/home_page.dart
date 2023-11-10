@@ -1,6 +1,7 @@
-import 'package:estudo_mascaras/tools/masks/cpf_mask.dart';
-import 'package:estudo_mascaras/tools/masks/mask_input.dart';
-import 'package:estudo_mascaras/tools/masks/real_mask.dart';
+import 'package:estudo_mascaras/tools/input_formaters/cnpj_input_formater.dart';
+import 'package:estudo_mascaras/tools/input_formaters/cpf_input_formater.dart';
+import 'package:estudo_mascaras/tools/input_formaters/currency_input_formater.dart';
+import 'package:estudo_mascaras/tools/input_formaters/generic_input_formater.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -26,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: EdgeInsets.all(8.0),
               child: TextField(
-                inputFormatters: [MaskInput('###.###.###-##')],
+                inputFormatters: [CpfInputFormater()],
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'CPF',
@@ -36,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: EdgeInsets.all(8.0),
               child: TextField(
-                inputFormatters: [MaskInput('##.###.###-####-##')],
+                inputFormatters: [CnpjInputFormater()],
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'CNPJ',
@@ -46,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: EdgeInsets.all(8.0),
               child: TextField(
-                inputFormatters: [MaskInput('##/##/####')],
+                inputFormatters: [GenericInputFormater(mask: '##/##/####')],
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Data',
@@ -56,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: EdgeInsets.all(8.0),
               child: TextField(
-                inputFormatters: [Currencymask()],
+                inputFormatters: [CurrencyInputFormater()],
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Real',
@@ -67,15 +68,42 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: EdgeInsets.all(8.0),
               child: TextField(
                 inputFormatters: [
-                  Currencymask(
-                      symbol: r'$ ', symbolSeparator: ',', decimal: '.')
+                  CurrencyInputFormater(symbol: r'$ ', symbolSeparator: ',', decimal: '.')
                 ],
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'USD',
                 ),
               ),
-            )
+            ),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: TextField(
+                //34191.75124 34567.871230 41234.560005 2 95290000026035
+                inputFormatters: [
+                  GenericInputFormater(
+                      mask: '#####.##### #####.###### #####.###### # ##############')
+                ],
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'BOLETO',
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: TextField(
+                //34191.75124 34567.871230 41234.560005 2 95290000026035
+                inputFormatters: [
+                  GenericInputFormater(
+                      mask: '###########-# ###########-# ###########-# ###########-#')
+                ],
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'BOLETO ARRECADAÇÃO',
+                ),
+              ),
+            ),
           ],
         ),
       ),

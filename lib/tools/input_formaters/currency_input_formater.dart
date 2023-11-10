@@ -1,17 +1,16 @@
 import 'package:flutter/services.dart';
 
 //Máscaras moeda real
-class Currencymask extends TextInputFormatter {
+class CurrencyInputFormater extends TextInputFormatter {
   final String symbol;
   final String symbolSeparator;
   final String decimal;
 
-  Currencymask(
-      {this.symbol = r'R$ ', this.symbolSeparator = '.', this.decimal = ','});
+  ///Currency formatter. Default: [Symbol] R$, [symbolSeparator] "." and [decimal] ",".
+  CurrencyInputFormater({this.symbol = r'R$ ', this.symbolSeparator = '.', this.decimal = ','});
 
   @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
     var value = newValue.text.replaceAll(RegExp(r'\D'), '');
 
     value = (int.tryParse(value) ?? 0).toString();
@@ -40,7 +39,6 @@ class Currencymask extends TextInputFormatter {
 
     return newValue.copyWith(
         text: formatted,
-        selection:
-            TextSelection.fromPosition(TextPosition(offset: formatted.length)));
+        selection: TextSelection.fromPosition(TextPosition(offset: formatted.length)));
   }
 }

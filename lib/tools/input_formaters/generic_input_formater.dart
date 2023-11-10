@@ -1,14 +1,13 @@
 import 'package:flutter/services.dart';
 
-//Máscaras para CPF, CNPJ e data (dd/MM/aaaa)
-class MaskInput extends TextInputFormatter {
+class GenericInputFormater extends TextInputFormatter {
   final String mask;
 
-  MaskInput(this.mask);
+  ///Use "#" as character to the formater.
+  GenericInputFormater({required this.mask});
 
   @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
     var value = newValue.text.replaceAll(RegExp(r'\D'), '');
     var formatted = mask;
     if (value.length > mask.length) return oldValue;
@@ -27,7 +26,6 @@ class MaskInput extends TextInputFormatter {
 
     return newValue.copyWith(
         text: formatted,
-        selection:
-            TextSelection.fromPosition(TextPosition(offset: formatted.length)));
+        selection: TextSelection.fromPosition(TextPosition(offset: formatted.length)));
   }
 }
