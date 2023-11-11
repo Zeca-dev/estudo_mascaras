@@ -1,6 +1,7 @@
+import 'package:estudo_mascaras/tools/input_formatters/interfaces/compoundable_formatters.dart';
 import 'package:flutter/services.dart';
 
-class CpfInputFormater extends TextInputFormatter {
+class CpfInputFormater extends TextInputFormatter implements CompoundableFormatter {
   @override
   TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
     var cpf = newValue.text;
@@ -23,4 +24,7 @@ class CpfInputFormater extends TextInputFormatter {
         text: formatted,
         selection: TextSelection.fromPosition(TextPosition(offset: formatted.length)));
   }
+
+  @override
+  int get maxLength => 11;
 }

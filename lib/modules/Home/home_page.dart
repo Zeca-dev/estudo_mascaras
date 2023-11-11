@@ -1,8 +1,10 @@
-import 'package:estudo_mascaras/tools/input_formaters/cnpj_input_formater.dart';
-import 'package:estudo_mascaras/tools/input_formaters/cpf_input_formater.dart';
-import 'package:estudo_mascaras/tools/input_formaters/currency_input_formater.dart';
-import 'package:estudo_mascaras/tools/input_formaters/generic_input_formater.dart';
+import 'package:estudo_mascaras/tools/input_formatters/cnpj_input_formatter.dart';
+import 'package:estudo_mascaras/tools/input_formatters/compound_formatters/cpf_cnpj_formatter.dart';
+import 'package:estudo_mascaras/tools/input_formatters/cpf_input_formatter.dart';
+import 'package:estudo_mascaras/tools/input_formatters/currency_input_formatter.dart';
+import 'package:estudo_mascaras/tools/input_formatters/generic_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -41,6 +43,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'CNPJ',
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: TextField(
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  CpfOuCnpjFormatter(),
+                ],
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'CPF ou CNPJ',
                 ),
               ),
             ),

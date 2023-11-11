@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 class GenericInputFormater extends TextInputFormatter {
   final String mask;
 
-  ///Use "#" as character to the formater.
+  ///Use "#" as character to the formatter.
   GenericInputFormater({required this.mask});
 
   @override
