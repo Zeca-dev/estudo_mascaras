@@ -1,7 +1,7 @@
-import 'package:estudo_mascaras/tools/formatter_output.dart';
-import 'package:estudo_mascaras/tools/input_formatters/cnpj_input_formatter.dart';
-import 'package:estudo_mascaras/tools/input_formatters/cpf_input_formatter.dart';
-import 'package:estudo_mascaras/tools/input_formatters/generic_input_formatter.dart';
+import 'package:estudo_mascaras/utils/formatter.dart';
+import 'package:estudo_mascaras/utils/input_formatters/cnpj_input_formatter.dart';
+import 'package:estudo_mascaras/utils/input_formatters/cpf_input_formatter.dart';
+import 'package:estudo_mascaras/utils/input_formatters/generic_input_formatter.dart';
 
 extension FormaterExetnsion on String {
   ///Remove todos os caracteres espeicias de uma string
@@ -12,7 +12,20 @@ extension FormaterExetnsion on String {
   String capitalizar({bool isComplete = false}) {
     if (isNotEmpty) {
       if (isComplete) {
-        List<String> preposicoes = ['o', 'a', 'os', 'as' 'da', 'de', 'do', 'das', 'em', 'na', 'no'];
+        List<String> preposicoes = [
+          'o',
+          'a',
+          'os',
+          'as',
+          'da',
+          'das',
+          'do',
+          'dos',
+          'de',
+          'em',
+          'na',
+          'no',
+        ];
         List<String> palavras = toLowerCase().trim().split(' ');
 
         final result = palavras
@@ -33,8 +46,8 @@ extension FormaterExetnsion on String {
     final cpfCnpj = removerCaracteresEspeciais().trim();
 
     return switch (cpfCnpj.length) {
-      11 => format(this, CpfInputFormater()),
-      14 => format(this, CnpjInputFormater()),
+      11 => formatString(this, CpfInputFormater()),
+      14 => formatString(this, CnpjInputFormater()),
       _ => throw ArgumentError(cpfCnpj.length < 11 ? 'CPF inválido!' : 'CNPJ inválido!')
     };
   }
@@ -48,8 +61,8 @@ extension FormaterExetnsion on String {
     }
 
     return switch (telefone.length) {
-      10 => format(this, GenericInputFormater(mask: '(##) ####-####')),
-      11 => format(this, GenericInputFormater(mask: '(##)# ####-####')),
+      10 => formatString(this, GenericInputFormater(mask: '(##) ####-####')),
+      11 => formatString(this, GenericInputFormater(mask: '(##)# ####-####')),
       _ => throw ArgumentError('Telefone inválido!')
     };
   }
@@ -62,7 +75,7 @@ extension FormaterExetnsion on String {
       return throw ArgumentError('Cep inválido!');
     }
 
-    return format(this, GenericInputFormater(mask: '##.###-###'));
+    return formatString(this, GenericInputFormater(mask: '##.###-###'));
   }
 }
 

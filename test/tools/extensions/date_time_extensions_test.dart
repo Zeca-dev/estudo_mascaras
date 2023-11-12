@@ -1,4 +1,4 @@
-import 'package:estudo_mascaras/tools/extensions/date_time_extensions.dart';
+import 'package:estudo_mascaras/utils/extensions/date_time_extensions.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

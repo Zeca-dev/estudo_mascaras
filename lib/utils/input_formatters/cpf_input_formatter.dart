@@ -1,21 +1,20 @@
-import 'package:estudo_mascaras/tools/input_formatters/interfaces/compoundable_formatters.dart';
+import 'package:estudo_mascaras/utils/input_formatters/interfaces/compoundable_formatters.dart';
 import 'package:flutter/services.dart';
 
-class CnpjInputFormater extends TextInputFormatter implements CompoundableFormatter {
+class CpfInputFormater extends TextInputFormatter implements CompoundableFormatter {
   @override
   TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
     var cpf = newValue.text;
-    //00.123.456/0001-00
-    if (cpf.length > 18) return oldValue;
+    //123.456.789-00
+    if (cpf.length > 14) return oldValue;
     cpf = cpf.replaceAll(RegExp(r'\D'), '');
     var formatted = '';
 
     for (var i = 0; i < cpf.length; i++) {
-      if ([2, 5, 8, 12].contains(i)) {
+      if ([3, 6, 9].contains(i)) {
         formatted += switch (i) {
-          2 || 5 => '.',
-          8 => '/',
-          12 => '-',
+          3 || 6 => '.',
+          9 => '-',
           _ => '',
         };
       }
@@ -27,5 +26,5 @@ class CnpjInputFormater extends TextInputFormatter implements CompoundableFormat
   }
 
   @override
-  int get maxLength => 14;
+  int get maxLength => 11;
 }

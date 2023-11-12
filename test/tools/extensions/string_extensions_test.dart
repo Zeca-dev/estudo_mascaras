@@ -1,4 +1,4 @@
-import 'package:estudo_mascaras/tools/extensions/string_extensions.dart';
+import 'package:estudo_mascaras/utils/extensions/string_extensions.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -51,6 +51,14 @@ void main() {
         'Deve retornar um throw ArgumentError ao receber uma string de data diferente de (dd/MM/yyyy).',
         () {
       expect(() => '12/11/23'.toDateTime(), throwsArgumentError);
+    });
+
+    test('Deve retornar uma string capitalizada (em maiúsculo).', () {
+      expect('teste concluído com sucesso!'.capitalizar(), equals('Teste concluído com sucesso!'));
+      expect('fulano ciclano da silva'.capitalizar(isComplete: true),
+          equals('Fulano Ciclano da Silva'));
+      expect('fulano ciclano de beltrano'.capitalizar(isComplete: true),
+          equals('Fulano Ciclano de Beltrano'));
     });
 
     //

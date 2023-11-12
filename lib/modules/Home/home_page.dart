@@ -1,8 +1,8 @@
-import 'package:estudo_mascaras/tools/input_formatters/cnpj_input_formatter.dart';
-import 'package:estudo_mascaras/tools/input_formatters/compound_formatters/cpf_cnpj_formatter.dart';
-import 'package:estudo_mascaras/tools/input_formatters/cpf_input_formatter.dart';
-import 'package:estudo_mascaras/tools/input_formatters/currency_input_formatter.dart';
-import 'package:estudo_mascaras/tools/input_formatters/generic_input_formatter.dart';
+import 'package:estudo_mascaras/utils/input_formatters/cnpj_input_formatter.dart';
+import 'package:estudo_mascaras/utils/input_formatters/compound_formatters/cpf_cnpj_formatter.dart';
+import 'package:estudo_mascaras/utils/input_formatters/cpf_input_formatter.dart';
+import 'package:estudo_mascaras/utils/input_formatters/currency_input_formatter.dart';
+import 'package:estudo_mascaras/utils/input_formatters/generic_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
