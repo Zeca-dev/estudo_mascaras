@@ -3,7 +3,7 @@ import 'package:estudo_mascaras/tools/input_formatters/cnpj_input_formatter.dart
 import 'package:estudo_mascaras/tools/input_formatters/cpf_input_formatter.dart';
 import 'package:estudo_mascaras/tools/input_formatters/generic_input_formatter.dart';
 
-extension Formater on String {
+extension FormaterExetnsion on String {
   ///Remove todos os caracteres espeicias de uma string
   String removerCaracteresEspeciais() => replaceAll(RegExp(r'[^\d\w]'), '');
 
@@ -30,7 +30,7 @@ extension Formater on String {
 
   ///Formata um CPF: 000.000.000-00 ou CNPJ: 00.000.000/00001-00
   String formatarCpfOuCnpj() {
-    final cpfCnpj = removerCaracteresEspeciais();
+    final cpfCnpj = removerCaracteresEspeciais().trim();
 
     return switch (cpfCnpj.length) {
       11 => format(this, CpfInputFormater()),
@@ -41,7 +41,7 @@ extension Formater on String {
 
   ///Formata um telefone: (99) 9999-9999 ou (99)9 9999-9999
   String formatarTelefone() {
-    final telefone = removerCaracteresEspeciais();
+    final telefone = removerCaracteresEspeciais().trim();
 
     if (telefone.isEmpty) {
       return throw ArgumentError('Celular inválido!');
@@ -56,24 +56,30 @@ extension Formater on String {
 
   ///Retorna um CEP no formato: 00.000-000
   String formatarCep() {
-    final cep = removerCaracteresEspeciais();
+    final cep = removerCaracteresEspeciais().trim();
 
-    if (cep.length < 8) {
+    if (cep.length != 8) {
       return throw ArgumentError('Cep inválido!');
     }
 
     return format(this, GenericInputFormater(mask: '##.###-###'));
   }
+}
 
-  ///Retorna um DateTime a partir de uma data
-  ///Formato:dd/MM/yyyy
-  DateTime stringToDateTime() {
+///Extensions para realizar cast de String
+extension CastExtension on String {
+  ///Retorna um DateTime a partir de uma data.
+  ///Formato de entrada: dd/MM/yyyy
+  DateTime toDateTime() {
+    if (length != 10) {
+      return throw ArgumentError('Data inválida');
+    }
     try {
       final dateSplited = split('/');
       return DateTime(
           int.parse(dateSplited[2]), int.parse(dateSplited[1]), int.parse(dateSplited[0]));
     } catch (error) {
-      return DateTime.now();
+      return throw ArgumentError('Data inválida');
     }
   }
 }

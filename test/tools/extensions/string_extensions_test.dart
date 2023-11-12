@@ -42,6 +42,17 @@ void main() {
       expect(() => '00000'.formatarCep(), throwsArgumentError);
     });
 
+    test('Deve retornar um DateTime a partir de uma string válida (dd/MM/yyyy).', () {
+      expect('12/11/2023'.toDateTime(), isA<DateTime>());
+      expect('12/11/2023'.toDateTime(), equals(DateTime(2023, 11, 12)));
+    });
+
+    test(
+        'Deve retornar um throw ArgumentError ao receber uma string de data diferente de (dd/MM/yyyy).',
+        () {
+      expect(() => '12/11/23'.toDateTime(), throwsArgumentError);
+    });
+
     //
   });
 }
