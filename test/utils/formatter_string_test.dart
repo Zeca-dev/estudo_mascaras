@@ -1,4 +1,4 @@
-import 'package:estudo_mascaras/utils/formatter.dart';
+import 'package:estudo_mascaras/utils/formatter_string.dart';
 import 'package:estudo_mascaras/utils/input_formatters/cnpj_input_formatter.dart';
 import 'package:estudo_mascaras/utils/input_formatters/cpf_input_formatter.dart';
 import 'package:estudo_mascaras/utils/input_formatters/currency_input_formatter.dart';
