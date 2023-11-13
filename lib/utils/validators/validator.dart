@@ -1,5 +1,3 @@
-library form_field_validator;
-
 import 'package:estudo_mascaras/utils/validators/interfaces/validator_interface.dart';
 import 'package:intl/intl.dart';
 
