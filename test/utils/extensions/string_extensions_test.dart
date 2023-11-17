@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:estudo_mascaras/utils/extensions/string_extensions.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -62,5 +63,14 @@ void main() {
     });
 
     //
+  });
+}
+
+class Teste {
+  final String nome;
+  final int idade;
+  Teste({
+    required this.nome,
+    required this.idade,
   });
 }
