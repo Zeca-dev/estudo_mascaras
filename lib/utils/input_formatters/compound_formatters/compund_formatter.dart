@@ -2,7 +2,7 @@ import 'package:flutter/services.dart';
 
 import '../interfaces/compoundable_formatters.dart';
 
-/// Combina dois ous mais instâncias de [Formatter] de forma que
+/// Combina duass ous mais instâncias de [Formatter] de forma que
 /// seja possível interpolar de um para outro
 class CompoundFormatter extends TextInputFormatter {
   /// Guarda uma lista de [CompoundableFormatter] que são encadeados
